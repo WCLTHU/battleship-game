@@ -20,7 +20,6 @@
   //view.displayHit("26");
   //view.displayMessage("Tap tap, is this thing on?");
 
-  
   var model = {
     boardSize: 7,
     numShips: 3,
@@ -154,6 +153,7 @@
             fireButton.onclick = handleFireButton;
             var guessInput = document.getElementById("guessInput");
             guessInput.onkeypress = handleKeyPress;
+            model.generateShipLocations();
            }
         
         
@@ -164,14 +164,12 @@
             guessInput.value = "";
           }
         
-          function handleKeypress() {
+          function handleKeyPress(e) {
             var fireButton =document.getElementById("fireButton");
-            if (keyCode === 13) {
+            if (e.keyCode === 13) {
               fireButton.click();
               return false;
             }
           }
-        
 
-        
           window.onload = init;
