@@ -12,13 +12,6 @@
           cell.setAttribute("class","miss");
         }
       }
-    //view.displayMiss("00");
-    //view.displayHit("34");
-    //view.displayMiss("55");
-    //view.displayHit("12");
-    //view.displayMiss("25");
-    //view.displayHit("26");
-    //view.displayMessage("Tap tap, is this thing on?");
 
     var model = {
       boardSize: 7,
@@ -28,6 +21,7 @@
       ships: [ { locations: [0, 0, 0], hits: ["", "", ""] },
               { locations: [0, 0, 0], hits: ["", "", ""] },
               { locations: [0, 0, 0], hits: ["", "", ""] } ],
+
       fire: function(guess) {
           for (var i = 0; i < this.numShips; i++) {
             var ship = this.ships[i];
@@ -40,25 +34,49 @@
                 view.displayMessage("You sank my battleship!");
                 this.shipsSunk++;
               }
-              return true;
+              return true
             }
           }
           view.displayMiss(guess);
           view.displayMessage("You missed.");
-          return false;
+          return false
         },
+
+
+        
       isSunk: function(ship) {
-        var count = 0;
+        var count = 0
         for (var i = 0; i < this.shipLength; i++) {
           if (ship.hits[i] === "hit") {
-            count++;
+            count ++;
+            for (var a = 0; a < this.shipLength;a++) {
+              var changeColor = document.getElementById(ship.locations[a])
+              view.displayHit(ship.locations[a])
+              changeColor.style.backgroundColor = 'green'
+              var TDbattleshipColor = document.getElementById(event.target.id)
+              TDbattleshipColor.style.backgroundColor ='red'
+            }
           }
-          if (count>this.shipLength*0.666){
-            return true;
+        }
+
+        if (count > this.shipLength*0.666){
+          for (var b = 0; b < this.shipLength; b++) {
+            var changeColored = document.getElementById(ship.locations[b])
+            view.displayHit(ship.locations[b])
+            changeColored.style.backgroundColor = 'red'
           }
-        };
+          return true
+        }
         return false
       },
+
+
+
+
+
+
+
+
       generateShipLocations: function() {
         var locations;
         for (var i = 0; i < this.numShips; i++) {
@@ -123,7 +141,7 @@
         }
         return null;
       }
-    
+  
     var controller = {
       guesses: 0,
       processGuess: function(guess) {
@@ -138,7 +156,6 @@
         }
       }
     };
-        
           // controller.processGuess("A0");
           // controller.processGuess("A6");
           // controller.processGuess("B6");
@@ -149,7 +166,6 @@
           // controller.processGuess("B0");
           // controller.processGuess("B1");
           // controller.processGuess("B2");
-        
     function init() {
       var fireButton = document.getElementById("fireButton");
       fireButton.onclick = handleFireButton;
@@ -172,7 +188,7 @@
       controller.processGuess(guess);
       guessInput.value = "";
     }
-          
+
     function handleKeyPress(e) {
       var fireButton =document.getElementById("fireButton");
       if (e.keyCode === 13) {
@@ -180,5 +196,4 @@
         return false;
       }
     }
-
     window.onload = init;
