@@ -1,7 +1,7 @@
     var view={
-        displayMessage:function(msg){
-          var messageArea=document.getElementById("messageArea");
-          messageArea.innerHTML=msg;
+        displayMessage:function(msg){//方法dispalyMaddage，括号中是参数
+          var messageArea=document.getElementById("messageArea");//获取网页中的元素messageArea
+          messageArea.innerHTML=msg;//messageArea的innerHTML(写入网页的东西)设置为msg
         },
         displayHit:function(location){
           var cell =document.getElementById(location);
@@ -44,36 +44,52 @@
 
 
         
-      isSunk: function(ship) {
+      // isSunk: function(ship) {
+      //   var count = 0
+      //   for (var i = 0; i < this.shipLength; i++) {
+      //     if (ship.hits[i] === "hit") {
+      //       count ++;
+      //       for (var a = 0; a < this.shipLength;a++) {
+      //         view.displayHit(ship.locations[a])
+      //         var TDbattleshipColor = document.getElementById(event.target.id)
+      //         TDbattleshipColor.style.backgroundImage = "url(photo/boom.png)"
+      //       }
+      //     }
+      //   }
+      //   if (count*10 > this.shipLength*6 ){
+      //     for (var b = 0; b < this.shipLength; b++) {
+      //       var changeColored = document.getElementById(ship.locations[b])
+      //       view.displayHit(ship.locations[b])
+      //       changeColored.style.backgroundImage = "url(photo/boom.png)"
+      //     }
+      //     return true
+      //   }
+      //   return false
+      // },
+      isSunk: function(ship){
         var count = 0
-        for (var i = 0; i < this.shipLength; i++) {
-          if (ship.hits[i] === "hit") {
-            count ++;
-            for (var a = 0; a < this.shipLength;a++) {
-              var changeColor = document.getElementById(ship.locations[a])
-              view.displayHit(ship.locations[a])
-              changeColor.style.backgroundColor = 'green'
-              var TDbattleshipColor = document.getElementById(event.target.id)
-              TDbattleshipColor.style.backgroundColor ='red'
+        for (var i = 0 ; i < this.shipLength ; i++){
+          if (ship.hits[i]==="hit"){
+            count++
+            for (var a = 0;a <this.shipLength;a++){
+              if (count===1){
+                view.displayHit(ship.locations[a])
+                var hit_1=document.getElementById(event.target.id)
+                hit_1.style.backgroundImage='url(photo/boom.png)'
+              }else if(count===2){
+                view.displayHit(ship.locations[a])
+                document.getElementById(ship.locations[a]).style.backgroundImage='url(photo/boom.png)'
+                var changeboom=document.getElementById(event.target.id)
+                changeboom.style.backgroundImage='url(photo/boom.png)'
+              }
             }
           }
         }
-
-        if (count > this.shipLength*0.666){
-          for (var b = 0; b < this.shipLength; b++) {
-            var changeColored = document.getElementById(ship.locations[b])
-            view.displayHit(ship.locations[b])
-            changeColored.style.backgroundColor = 'red'
-          }
-          return true
+        if (count*10 >this.shipLength*6){
+          return true;
         }
-        return false
-      },
-
-
-
-
-
+        return false;
+    },
 
 
 
@@ -88,6 +104,7 @@
         console.log("Ships array: ");
         console.log(this.ships);
       },
+
       generateShip: function() {
         var direction = Math.floor(Math.random() * 2);
         var row, col;
@@ -156,16 +173,8 @@
         }
       }
     };
-          // controller.processGuess("A0");
-          // controller.processGuess("A6");
-          // controller.processGuess("B6");
-          // controller.processGuess("C6");
-          // controller.processGuess("C4");
-          // controller.processGuess("D4");
-          // controller.processGuess("E4");
-          // controller.processGuess("B0");
-          // controller.processGuess("B1");
-          // controller.processGuess("B2");
+
+
     function init() {
       var fireButton = document.getElementById("fireButton");
       fireButton.onclick = handleFireButton;
