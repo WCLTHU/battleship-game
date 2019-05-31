@@ -42,30 +42,6 @@
           return false
         },
 
-
-        
-      // isSunk: function(ship) {
-      //   var count = 0
-      //   for (var i = 0; i < this.shipLength; i++) {
-      //     if (ship.hits[i] === "hit") {
-      //       count ++;
-      //       for (var a = 0; a < this.shipLength;a++) {
-      //         view.displayHit(ship.locations[a])
-      //         var TDbattleshipColor = document.getElementById(event.target.id)
-      //         TDbattleshipColor.style.backgroundImage = "url(photo/boom.png)"
-      //       }
-      //     }
-      //   }
-      //   if (count*10 > this.shipLength*6 ){
-      //     for (var b = 0; b < this.shipLength; b++) {
-      //       var changeColored = document.getElementById(ship.locations[b])
-      //       view.displayHit(ship.locations[b])
-      //       changeColored.style.backgroundImage = "url(photo/boom.png)"
-      //     }
-      //     return true
-      //   }
-      //   return false
-      // },
       isSunk: function(ship){
         var count = 0
         for (var i = 0 ; i < this.shipLength ; i++){
@@ -76,7 +52,7 @@
                 view.displayHit(ship.locations[a])
                 var hit_1=document.getElementById(event.target.id)
                 hit_1.style.backgroundImage='url(photo/boom.png)'
-              }else if(count===2){
+              }else {
                 view.displayHit(ship.locations[a])
                 document.getElementById(ship.locations[a]).style.backgroundImage='url(photo/boom.png)'
                 var changeboom=document.getElementById(event.target.id)
@@ -108,10 +84,10 @@
       generateShip: function() {
         var direction = Math.floor(Math.random() * 2);
         var row, col;
-        if (direction === 1) { // horizontal
+        if (direction === 1) {
           row = Math.floor(Math.random() * this.boardSize);
           col = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
-        } else { // vertical
+        } else {
           row = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
           col = Math.floor(Math.random() * this.boardSize);
         }

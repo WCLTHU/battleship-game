@@ -43,3 +43,6 @@
     .miss {
         background: url("photo/miss.png") no-repeat center center;
     }
+    td:hover{
+      background-color:#143fb6;
+    }
