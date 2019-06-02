@@ -4,22 +4,22 @@
           messageArea.innerHTML=msg;//messageArea的innerHTML(写入网页的东西)设置为msg
         },
         displayHit:function(location){
-          var cell =document.getElementById(location);
-          cell.setAttribute("class","hit");
+          var cell =document.getElementById(location);//获得猜测位置
+          cell.setAttribute("class","hit");//显示hit图像
         },
         displayMiss:function(location) {
-          var cell=document.getElementById(location);
-          cell.setAttribute("class","miss");
+          var cell=document.getElementById(location);//和上面的一样，获得猜测的位置
+          cell.setAttribute("class","miss");//显示miss图像
         }
       }
 
     var model = {
-      boardSize: 7,
-      numShips: 3,
-      shipsSunk: 0,
-      shipLength: 3,
-      ships: [ { locations: [0, 0, 0], hits: ["", "", ""] },
-              { locations: [0, 0, 0], hits: ["", "", ""] },
+      boardSize: 7,//界面的大小
+      numShips: 3,//战舰的数量
+      shipLength: 3,//战舰的长度
+      shipsSunk: 0,//击沉的数量
+      ships: [ { locations: [0, 0, 0], hits: ["", "", ""] },//location是随机生成的单元格
+              { locations: [0, 0, 0], hits: ["", "", ""] },//而hits是用来存储被击中的部位
               { locations: [0, 0, 0], hits: ["", "", ""] } ],
 
       fire: function(guess) {
